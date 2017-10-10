@@ -1,0 +1,25 @@
+{
+  "name": "upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "audio",
+    "upload"
+  ],
+  "author": "Luiz Fernando (Trovarius)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "helmet": "^3.8.2",
+    "http-status": "^1.0.1",
+    "mongoose": "^4.12.1",
+    "multer": "^1.3.0",
+    "nodemon": "^1.12.1"
+  }
+}
