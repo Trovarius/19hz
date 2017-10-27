@@ -11,6 +11,19 @@ services:
       - mongo
     depends_on:
       - mongo
+  transcript:
+    container_name: transcript
+    build: ./src/services/transcript
+    ports:
+      - "3001:3001"
+    volumes:
+      - './src/services/transcript:/app'
+    environment:
+        GOOGLE_APPLICATION_CREDENTIALS: '/app/gcs_credentials.json'
+    links:
+      - mongo
+    depends_on:
+      - mongo
   mongo:
     image: mongo
     ports:
