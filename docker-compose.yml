@@ -24,6 +24,17 @@ services:
       - mongo
     depends_on:
       - mongo
+  streaming:
+    container_name: streaming
+    build: ./src/services/streaming
+    ports:
+      - "3002:3002"
+    volumes:
+      - './src/services/streaming:/app'
+    links:
+      - mongo
+    depends_on:
+      - mongo
   mongo:
     image: mongo
     ports:
