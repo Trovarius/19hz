@@ -15,6 +15,7 @@ CMD ["npm", "start"]
 
 RUN apk add --update --no-cache \
   --repository http://dl-3.alpinelinux.org/alpine/edge/testing \
-  vips-dev fftw-dev gcc g++ make libc6-compat \
+  vips-dev fftw-dev gcc g++ make libc6-compat
 
+RUN npm rebuild --build-from-source
 #docker run -e GOOGLE_APPLICATION_CREDENTIALS=gcs_credentials.json transcript

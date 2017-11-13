@@ -6,25 +6,27 @@ var uploadController = require('./controller/uploadController');
 var multer  = require('multer')
 var upload = multer({ dest: 'files/' })
 
-//mongoose.connect("mongodb://mongo:27017");
+var mongoDB = "mongodb://mongo:27017/audio";
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var app = express();
 
-app.use(helmet());
-//app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// parse application/json
-//app.use(bodyParser.json())
+app.use(helmet());
 
 app.get('/', function(req, res){
-  res.send("Upload Services - OK");
+  res.send(200, "Upload Services - OK");
 });
-
-app.post('/profile', upload.single('audio'), function (req, res, next) {
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-  console.log(req.file);
-})
 
 // we add our API's to the express app
 uploadController(app, upload);

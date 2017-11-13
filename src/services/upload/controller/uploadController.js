@@ -1,5 +1,8 @@
 'use strict'
+
 const status = require('http-status');
+const Audio = require('../model/audioSchema');
+
 var fs = require('fs');
 
 module.exports = (app, upload) => {
@@ -20,14 +23,16 @@ module.exports = (app, upload) => {
        stored in the variable "originalname". **/
     var target_path = 'files/' + req.file.originalname;
 
-    /** A better way to copy the uploaded file. **/
-    var src = fs.createReadStream(tmp_path);
-    var dest = fs.createWriteStream(target_path);
-    src.pipe(dest);
-    src.on('end', function() { res.redirect('/uploaded/nova'); });
-    src.on('error', function(err) { res.render('error'); });
+    var audio = new Audio({
+      file_name: req.file.originalname,
+      path: req.file.path
+    });
 
-    res.redirect("/uploaded/"+ req.file.originalname);
+    audio.save((err) =>{
+      console.log(err);
+    });
+
+    res.redirect("/transcript/"+ audio._id);
   })
 
   app.get('/upload-form', (req, res, next) => {
@@ -39,8 +44,27 @@ module.exports = (app, upload) => {
   })
 
   // here we get all the movies
-  app.get('/uploaded/:name', (req, res, next) => {
-    res.send(req.params.name);
+  app.get('/download/:id', (req, res, next) => {
+    var audio = null;
+     Audio.findOne({_id: req.params.id}, function(err, audio){
+         if(err) res.send(404, 'File not found. Error:' + err);
+
+         console.log("/app/"+ audio.path);
+         res.download("/app/"+ audio.path)
+    });
+
+ })
+
+ var readFilePromise = function(file) {
+  return new Promise(function(ok, notOk) {
+    fs.readFile(file, function(err, data) {
+        if (err) {
+          notOk(err)
+        } else {
+          ok(data)
+        }
+    })
   })
+}
 
 }
