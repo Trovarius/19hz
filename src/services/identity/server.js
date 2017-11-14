@@ -21,8 +21,7 @@ var app = express();
 
 // Middleware
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -31,7 +30,6 @@ app.use(cookieParser());
 app.use(session({ secret: 'session secret key' }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
 
 passport.use(new LocalStrategy(function(username, password, done) {
   User.findOne({ username: username }, function(err, user) {
@@ -94,6 +92,6 @@ app.post('/signup', function(req, res) {
   });
 });
 
-app.listen(3000, function() {
-  console.log('Express server listening on port ' + 3000);
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
 });
