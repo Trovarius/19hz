@@ -1,24 +1,22 @@
 {
-  "name": "transcript",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha",
-    "start": "node /app/app.js"
-  },
-  "keywords": [
-    "audio",
-    "upload"
-  ],
-  "author": "Luiz Fernando (Trovarius)",
-  "license": "ISC",
-  "dependencies": {
-    "@google-cloud/speech": "^0.10.3",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.1",
-    "helmet": "^3.8.2",
-    "http-status": "^1.0.1",
-    "mongoose": "^4.12.1"
-  }
+    "name": "transcript",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@google-cloud/speech": "^0.11.0",
+        "body-parser": "^1.18.2",
+        "express": "^4.16.2",
+        "helmet": "^3.9.0",
+        "http-status": "^1.0.1",
+        "mongoose": "^4.12.4",
+        "multer": "^1.3.0",
+        "nodemon": "^1.12.1"
+    }
 }

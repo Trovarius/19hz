@@ -1,10 +1,5 @@
 FROM node:alpine
 
-RUN apk add --no-cache --virtual .gyp \
-        python \
-        make \
-        g++
-
 # set working directory
 RUN mkdir /app
 WORKDIR /app
@@ -17,5 +12,3 @@ COPY . /app
 
 # start app
 CMD ["npm", "start"]
-
-#docker run -e GOOGLE_APPLICATION_CREDENTIALS=gcs_credentials.json transcript
