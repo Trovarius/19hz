@@ -1,0 +1,32 @@
+{
+  "name": "idenity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "start": "node ./node_modules/nodemon/bin/nodemon server.js"
+  },
+  "keywords": [
+    "audio",
+    "upload"
+  ],
+  "author": "Luiz Fernando (Trovarius)",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "helmet": "^3.8.2",
+    "http-status": "^1.0.1",
+    "mongoose": "^4.13.2",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.4.0",
+    "nodemon": "^1.12.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
