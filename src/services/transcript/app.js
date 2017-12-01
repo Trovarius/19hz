@@ -8,7 +8,7 @@ const Speech = require('@google-cloud/speech');
 const fs = require('fs');
 
 // Instantiates a client
-const speechClient = Speech();
+const speechClient = new Speech.SpeechClient();
 
 var mongoDB = "mongodb://mongo:27017/audio";
 
